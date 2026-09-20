@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AK Academic Solutions - Website Building, Script Writing, Meta Ads and Academic Project Services." />
+  <title>AK Academic Solutions | Digital & Academic Services</title>
+  <style>
+    :root{
+      --bg:#f5f7fb; --surface:#ffffff; --text:#172033; --muted:#667085;
+      --primary:#5b4bff; --secondary:#08b6a6; --accent:#ffb547;
+      --border:#e7eaf2; --shadow:0 16px 45px rgba(29,35,70,.10);
+    }
+    body.dark{
+      --bg:#0d1220; --surface:#151c2e; --text:#f5f7ff; --muted:#b0b8cc;
+      --primary:#9187ff; --secondary:#36d9c8; --border:#29324a;
+      --shadow:0 16px 45px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1150px,92%);margin:auto}
+    .topbar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:72px}
+    .brand{font-size:1.25rem;font-weight:900;letter-spacing:.2px}
+    .brand span{color:var(--primary)}
+    .brand{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:900;letter-spacing:.2px}
+    .brand em{font-style:normal;color:var(--primary)}
+    .logo-mark{display:inline-flex;width:42px;height:42px;flex:0 0 42px}
+    .logo-mark svg{width:100%;height:100%;display:block}
+
+    .navlinks{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:.93rem;font-weight:700}
+    .navlinks a:hover{color:var(--primary)}
+    .nav-actions{display:flex;gap:8px;align-items:center}
+    .icon-btn,.menu-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:12px;padding:10px 12px;cursor:pointer}
+    .menu-btn{display:none}
+    .hero{padding:78px 0 60px;background:radial-gradient(circle at 10% 10%,rgba(91,75,255,.14),transparent 35%),radial-gradient(circle at 90% 20%,rgba(8,182,166,.12),transparent 32%)}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:45px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(91,75,255,.10);color:var(--primary);border:1px solid rgba(91,75,255,.18);padding:7px 12px;border-radius:999px;font-weight:800;font-size:.8rem}
+    h1{font-size:clamp(2.35rem,5vw,4.5rem);line-height:1.08;margin:18px 0}
+    h1 span{color:var(--primary)}
+    .hero p{font-size:1.08rem;color:var(--muted);max-width:650px}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:13px 19px;border-radius:13px;border:1px solid transparent;font-weight:800;cursor:pointer;transition:.2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-outline{border-color:var(--border);background:var(--surface);color:var(--text)}
+    .profile-wrap{position:relative;text-align:center}
+    .profile{width:min(350px,90%);aspect-ratio:1/1;object-fit:cover;border-radius:34px;border:8px solid var(--surface);box-shadow:var(--shadow);transform:rotate(2deg)}
+    .floating-card{position:absolute;bottom:15px;left:0;background:var(--surface);padding:15px 18px;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);font-weight:800}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:35px}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:17px;text-align:center}
+    .stat strong{font-size:1.5rem;color:var(--primary);display:block}
+    section{padding:75px 0}
+    .section-head{text-align:center;max-width:720px;margin:0 auto 35px}
+    .section-head h2{font-size:clamp(1.8rem,3vw,2.7rem);margin:0 0 10px}
+    .section-head p{color:var(--muted);margin:0}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:25px;box-shadow:0 8px 28px rgba(29,35,70,.04);transition:.25s}
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+    .service-icon{font-size:2rem}
+    .card h3{margin:12px 0 7px}
+    .card p{color:var(--muted);margin:0 0 15px}
+    .tag{display:inline-block;padding:5px 9px;border-radius:999px;background:rgba(8,182,166,.12);color:var(--secondary);font-size:.75rem;font-weight:800}
+    .filterbar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:25px}
+    .filter{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:700}
+    .filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .project-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .project{padding:20px}
+    .project small{color:var(--secondary);font-weight:800}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{text-align:center}
+    .step-number{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--primary);color:#fff;font-weight:900;margin:0 auto 12px}
+    .contact-box{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:stretch}
+    .contact-list{display:grid;gap:12px}
+    .contact-item{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);padding:16px;border-radius:15px}
+    .contact-item b{display:block}
+    .contact-item span{color:var(--muted);font-size:.92rem}
+    form{display:grid;gap:12px}
+    input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--text);font:inherit}
+    textarea{min-height:120px;resize:vertical}
+    footer{padding:28px 0;background:var(--surface);border-top:1px solid var(--border);text-align:center;color:var(--muted)}
+    .toast{position:fixed;right:20px;bottom:20px;background:var(--text);color:var(--bg);padding:13px 17px;border-radius:12px;display:none;z-index:100}
+    .hidden{display:none!important}
+    @media(max-width:950px){
+      .hero-grid{grid-template-columns:1fr;text-align:center}
+      .hero p{margin-left:auto;margin-right:auto}
+      .buttons{justify-content:center}
+      .profile-wrap{order:-1}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .project-grid{grid-template-columns:repeat(2,1fr)}
+      .process{grid-template-columns:repeat(2,1fr)}
+      .contact-box{grid-template-columns:1fr}
+    }
+    @media(max-width:720px){
+      .navlinks{display:none;position:absolute;left:0;right:0;top:72px;padding:20px;background:var(--surface);border-bottom:1px solid var(--border);flex-direction:column;align-items:flex-start}
+      .navlinks.open{display:flex}
+      .menu-btn{display:block}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .services,.project-grid{grid-template-columns:1fr}
+      section{padding:55px 0}
+      .floating-card{left:4%;bottom:0}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#home" aria-label="AK Academic Solutions home">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="img">
+              <defs>
+                <linearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#5b4bff"/>
+                  <stop offset="100%" stop-color="#08b6a6"/>
+                </linearGradient>
+              </defs>
+              <rect x="3" y="3" width="58" height="58" rx="18" fill="url(#logoGradient)"/>
+              <path d="M17 44 29 18h6l12 26h-7l-2.5-6H26.5L24 44Zm12-12h6l-3-7Z" fill="#fff"/>
+              <path d="M18 48h28" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>AK <em>Academic Solutions</em></span>
+        </a>
+        <div class="navlinks" id="navlinks">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#process">How It Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">✨ Digital Services + Academic Solutions</div>
+        <h1>Build. Create. <span>Grow.</span></h1>
+        <p>Professional websites, creative scripts, Meta Ads support, academic projects and PPT solutions — all in one place at a genuine price.</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#services">Explore Services →</a>
+          <a class="btn btn-outline" href="#contact">Request a Service</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>06+</strong><small>Service Categories</small></div>
+          <div class="stat"><strong>24/7</strong><small>Inquiry Support</small></div>
+          <div class="stat"><strong>100%</strong><small>Personal Attention</small></div>
+          <div class="stat"><strong>₹</strong><small>Genuine Pricing</small></div>
+        </div>
+        <p class="hindi" style="margin-top:18px;color:var(--muted);font-size:.92rem;">Professional support for students, creators and growing businesses.</p>      </div>
+      <div class="profile-wrap">
+        <img class="profile" src="profile.jpg" alt="Ajeet Kumar - AK Academic Solutions founder" loading="lazy" />
+        <div class="floating-card">👋 Hi, I'm Ajeet Kumar</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Our Services</h2>
+          <p>Choose the service you need. Send your requirements and receive a clear response.</p>
+        </div>
+        <div class="services">
+          <article class="card"><div class="service-icon">🌐</div><span class="tag">Featured</span><h3>Website Building</h3><p>Business websites, portfolios, landing pages, student websites and responsive web design.</p><a class="btn btn-outline" href="#contact" data-service="Website Building">Get Website Quote →</a></article>
+          <article class="card"><div class="service-icon">✍️</div><span class="tag">Creative</span><h3>Script Writing</h3><p>YouTube scripts, Reels scripts, educational videos, promotional content and ad scripts.</p><a class="btn btn-outline" href="#contact" data-service="Script Writing">Request Script →</a></article>
+          <article class="card"><div class="service-icon">📢</div><span class="tag">Marketing</span><h3>Meta Ads</h3><p>Facebook and Instagram campaign setup, ad copy, creative guidance and lead-generation support.</p><a class="btn btn-outline" href="#contact" data-service="Meta Ads">Discuss Meta Ads →</a></article>
+          <article class="card"><div class="service-icon">📊</div><h3>PPT Creation</h3><p>Seminar, internship, project and viva presentations with clean visual design.</p><a class="btn btn-outline" href="#contact" data-service="PPT Creation">Order PPT →</a></article>
+          <article class="card"><div class="service-icon">💻</div><h3>Academic Projects</h3><p>Mini and major projects using Python, Java, web technologies, ML and databases.</p><a class="btn btn-outline" href="#contact" data-service="Academic Projects">Discuss Project →</a></article>
+          <article class="card"><div class="service-icon">🎤</div><h3>Report & Viva Support</h3><p>Project documentation, explanations, viva questions and presentation preparation.</p><a class="btn btn-outline" href="#contact" data-service="Report & Viva Support">Get Support →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Sample Projects</h2>
+          <p>Explore examples by technology or project category.</p>
+        </div>
+        <div class="filterbar">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="python">Python</button>
+          <button class="filter" data-filter="web">Web</button>
+          <button class="filter" data-filter="database">Database</button>
+          <button class="filter" data-filter="management">Management</button>
+        </div>
+        <div class="project-grid">
+          <article class="card project" data-category="python database">
+            <small>Python + MySQL</small>
+            <h3>Library Management System</h3>
+            <p>Book records, issue/return management, search and database operations.</p>
+            <span class="tag">Academic Project</span>
+          </article>
+          <article class="card project" data-category="web management">
+            <small>HTML + CSS + JavaScript</small>
+            <h3>Student Management System</h3>
+            <p>Student profiles, record management, responsive dashboard and forms.</p>
+            <span class="tag">Web Application</span>
+          </article>
+          <article class="card project" data-category="database management">
+            <small>Database + Business Workflow</small>
+            <h3>Inventory Management System</h3>
+            <p>Product records, stock tracking, low-stock alerts and organized reports.</p>
+            <span class="tag">Management Tool</span>
+          </article>
+          <article class="card project" data-category="web">
+            <small>Web Application</small>
+            <h3>Online Examination System</h3>
+            <p>Question bank, online submissions, timer-based tests and results workflow.</p>
+            <span class="tag">Education Tech</span>
+          </article>
+          <article class="card project" data-category="python">
+            <small>Python + Machine Learning</small>
+            <h3>Agricultural Production Optimization</h3>
+            <p>Crop recommendation concept using soil and environmental inputs.</p>
+            <span class="tag">AI / ML</span>
+          </article>
+          <article class="card project" data-category="web management">
+            <small>Responsive Website</small>
+            <h3>Business Portfolio Website</h3>
+            <p>Modern service sections, inquiry forms, mobile layout and call-to-action buttons.</p>
+            <span class="tag">Website Building</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <h2>How It Works</h2>
+          <p>A simple process from your idea to the final delivery.</p>
+        </div>
+        <div class="process">
+          <div class="card step"><div class="step-number">1</div><h3>Tell Us</h3><p>Share your requirements and deadline.</p></div>
+          <div class="card step"><div class="step-number">2</div><h3>Discuss</h3><p>We clarify scope, features and budget.</p></div>
+          <div class="card step"><div class="step-number">3</div><h3>Create</h3><p>Work is prepared according to the agreed plan.</p></div>
+          <div class="card step"><div class="step-number">4</div><h3>Deliver</h3><p>Receive the agreed files and support details.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Let's Work Together</h2>
+          <p>Send your request. The form will prepare a WhatsApp message for you.</p>
+        </div>
+        <div class="contact-box">
+          <div class="contact-list">
+            <div class="contact-item"><div>📱</div><div><b>WhatsApp</b><span>+91 9410455934</span></div></div>
+            <div class="contact-item"><div>📧</div><div><b>Email</b><span>ajeetkumarsahar1@gmail.com</span></div></div>
+            <div class="contact-item"><div>🎯</div><div><b>Services</b><span>Websites, scripts, Meta Ads, PPTs and academic solutions.</span></div></div>
+            <a class="btn btn-primary" href="https://wa.me/919410455934" target="_blank" rel="noopener">Chat on WhatsApp ↗</a>
+            <a class="btn btn-outline" href="mailto:ajeetkumarsahar1@gmail.com">Send Email ✉</a>
+          </div>
+          <div class="card">
+            <form id="requestForm">
+              <input id="name" type="text" placeholder="Your name" required />
+              <input id="phone" type="tel" placeholder="Your phone number" required />
+              <select id="service" required>
+                <option value="">Select a service</option>
+                <option>Website Building</option>
+                <option>Script Writing</option>
+                <option>Meta Ads</option>
+                <option>PPT Creation</option>
+                <option>Academic Projects</option>
+                <option>Report & Viva Support</option>
+                <option>Other</option>
+              </select>
+              <textarea id="message" placeholder="Tell us about your requirements..." required></textarea>
+              <button class="btn btn-primary" type="submit">Send Request on WhatsApp →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> AK Academic Solutions | All Rights Reserved</div>
+  </footer>
+  <div class="toast" id="toast">Service selected</div>
+
+  <script>
+    const body = document.body;
+    const themeBtn = document.getElementById('themeBtn');
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    const toast = document.getElementById('toast');
+
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+    menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+    navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+    document.querySelectorAll('[data-service]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('service').value = btn.dataset.service;
+        toast.textContent = btn.dataset.service + ' selected';
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 1800);
+      });
+    });
+
+    document.querySelectorAll('.filter').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        document.querySelectorAll('.project').forEach(project => {
+          project.classList.toggle('hidden', filter !== 'all' && !project.dataset.category.includes(filter));
+        });
+      });
+    });
+
+    document.getElementById('requestForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+      const text = `Hello AK Academic Solutions,%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0ARequirements: ${encodeURIComponent(message)}`;
+      window.open('https://wa.me/919410455934?text=' + text, '_blank');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
